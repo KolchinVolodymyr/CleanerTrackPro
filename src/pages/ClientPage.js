@@ -6,8 +6,10 @@ export const ClientPage = () => {
     const [data, setData] = useState({
         name: '', address: '', phone: '', contactPerson: '', client: '', status: ''
     });
+     const [client, setClient] = useState([]);
 
-    const handleSubmit = (event) => {
+
+    const handleSubmitCreate = (event) => {
         axios.post('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json', data)
             .then((response)=>{
                 console.log(response);
@@ -17,6 +19,29 @@ export const ClientPage = () => {
             })
         event.preventDefault();
     };
+
+    const handleSubmitReadList = event => {
+        console.log('e', event);
+        axios.get('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json')
+         .then((response)=>{
+            console.log(response);
+            const client = [];
+            Object.keys(response.data).forEach((key, index)=> {
+                console.log('key', key);
+                console.log('index', index);
+                client.push({
+                    id: key,
+                    name: `Client ${index+1}`
+                })
+                console.log('client', client);
+                setClient({client});
+
+            })
+         })
+         .catch(error => {
+            console.log('error', error);
+         })
+    }
 
     const changeHandler = event => {
         setData({...data, [event.target.name]: event.target.value});
@@ -82,8 +107,9 @@ export const ClientPage = () => {
                     <option value='true'>true</option>
                     <option value='false'>false</option>
                 </select>
-                <Button onClick={handleSubmit} type="primary">Create</Button>
+                <Button onClick={handleSubmitCreate} type="primary">Create</Button>
             </form>
+            <Button onClick={handleSubmitReadList} type="primary">Read</Button>
         </div>
     )
 }
