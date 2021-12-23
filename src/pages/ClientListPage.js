@@ -4,9 +4,11 @@ import axios from 'axios';
 
 export const ClientListPage = () => {
     const [client, setClient] = useState([]);
+    const [data, setData] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const loadMessage = async () => {
         const response = await axios.get('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json');
+        console.log('response', response.data);
         Object.keys(response.data).forEach((key, index)=> {
             client.push({
                 id: key,
@@ -15,6 +17,12 @@ export const ClientListPage = () => {
             setClient({client});
             setIsLoaded(true);
         })
+        Object.values(response.data).forEach((key, index)=> {
+            data.push({value: key});
+            setData({data})
+        })
+//
+//        console.log('Object.entries(response.data)', Object.entries(response.data));
     };
 
     // Note: an empty array of dependencies [] means that
@@ -27,12 +35,13 @@ export const ClientListPage = () => {
     if (!isLoaded) {
         return <div>Загрузка...</div>;
     } else {
+    console.log('data',data)
         return(
             <div>
                 <h1>
                     Client List Page
                 </h1>
-                {client.client.map(item => {
+                {data.value.map(item => {
                 return(
                     <li key={item.id}>
                         {item.name}
