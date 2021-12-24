@@ -19,16 +19,15 @@ export const ClientEditPage = () => {
             })
     }, [ID]);
 
-    const pressHandler = (event)  => {
-        axios.put(`https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test/${ID}.json`, data)
+    const pressHandler = async (event)  => {
+        await axios.put(`https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test/${ID}.json`, data)
         .then((response)=>{
             console.log(response);
+            navigate('/client/list');
         })
         .catch(error => {
             console.log('error', error);
         })
-        navigate('/client/list');
-        event.preventDefault();
     }
 
     const changeHandler = event => {
@@ -82,9 +81,8 @@ export const ClientEditPage = () => {
                         <label>Corporate or personal?</label>
                         <select
                             className="browser-default"
-                            defaultValue='Choose your option'
+                            defaultValue={data.client}
                             name="client"
-                            value={data.client}
                             onChange={changeHandler}
                         >
                             <option value='Choose your option' disabled>Choose your option</option>
@@ -96,9 +94,8 @@ export const ClientEditPage = () => {
                         <label>Status</label>
                         <select
                             className="browser-default"
-                            defaultValue='Choose your option'
+                            defaultValue={data.status}
                             name="status"
-                            value={data.status}
                             onChange={changeHandler}
                         >
                             <option value='Choose your option' disabled>Choose your option</option>

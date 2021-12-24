@@ -35,7 +35,6 @@ export const ClientListPage = () => {
     if (!isLoaded) {
         return <div>Загрузка...</div>;
     } else {
-    console.log('data 222', data)
         return(
             <div>
                 <h1>
