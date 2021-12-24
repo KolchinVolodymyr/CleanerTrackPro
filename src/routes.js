@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
-import {ClientPage} from './pages/ClientPage';
+import {ClientAddPage} from './pages/ClientAddPage';
 import {ClientListPage} from './pages/ClientListPage';
 import {ClientEditPage} from './pages/ClientEditPage';
 import {ClientDeletePage} from './pages/ClientDeletePage';
@@ -12,7 +12,7 @@ import {WorksitesPage} from './pages/WorksitesPage';
 export const MyRoutes = () => {
     return (
         <Routes>
-            <Route path='/client' exact element={<ClientPage />} />
+            <Route path='/client' exact element={<ClientAddPage />} />
             <Route path='/client/list' exact element={<ClientListPage />} />
             <Route path='/client/:id/edit' element={<ClientEditPage />} />
             <Route path='/client/:id/delete' element={<ClientDeletePage />} />

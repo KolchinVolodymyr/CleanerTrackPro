@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {Button} from './../components/Button';
 
-export const ClientPage = () => {
+export const ClientAddPage = () => {
     const [data, setData] = useState({
         name: '', address: '', phone: '', contactPerson: '', client: '', status: ''
     });
@@ -21,21 +21,16 @@ export const ClientPage = () => {
     };
 
     const handleSubmitReadList = event => {
-        console.log('e', event);
         axios.get('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json')
          .then((response)=>{
             console.log(response);
             const client = [];
             Object.keys(response.data).forEach((key, index)=> {
-                console.log('key', key);
-                console.log('index', index);
                 client.push({
                     id: key,
                     name: `Client ${index+1}`
                 })
-                console.log('client', client);
                 setClient({client});
-
             })
          })
          .catch(error => {
