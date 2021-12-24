@@ -23,8 +23,6 @@ export const ClientAddPage = () => {
     const handleSubmitReadList = event => {
         axios.get('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json')
          .then((response)=>{
-            console.log(response);
-            const client = [];
             Object.keys(response.data).forEach((key, index)=> {
                 client.push({
                     id: key,

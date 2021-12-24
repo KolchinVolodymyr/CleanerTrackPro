@@ -1,37 +1,22 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from "react-router-dom";
 
 export const ClientListPage = () => {
     const [data, setData] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
-//    const loadMessage = async () => {
-//        const response = await axios.get('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json/');
-//        Object.entries(response.data).forEach((key, index)=> {
-//            client.push({
-//                id: key,
-//                name: `Client ${index+1}`
-//            })
-//            setClient({client});
-//            setIsLoaded(true);
-//        })
-//    };
-    const loadMessage = useCallback(async () => {
-        try {
-            const response = await axios.get('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json/');
-                let newArr = [];
-                Object.entries(response.data).forEach((key, index)=> {
-                    newArr.push({
-                        id: key,
-                        name: `Client ${index+1}`
-                    })
-                    setIsLoaded(true);
-                })
-                setData(newArr);
-        } catch (e) {
-            console.log(e);
-        }
-    }, []);
+    const loadMessage = async () => {
+        const response = await axios.get('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json/');
+        let newArr = [];
+        Object.entries(response.data).forEach((key, index)=> {
+            newArr.push({
+                id: key,
+                name: `Client ${index+1}`
+            })
+            setIsLoaded(true);
+        })
+        setData(newArr);
+    };
 
     // Note: an empty array of dependencies [] means that
     // this useEffect will run once
@@ -40,9 +25,8 @@ export const ClientListPage = () => {
         loadMessage();
     }, [])
 
-    const onRemove = (event)  => {
-        console.log(event);
-        axios.delete(`https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test/${event}.json`)
+    const onRemove = (id)  => {
+        axios.delete(`https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test/${id}.json`)
         .then((response)=>{
             loadMessage();
         })
