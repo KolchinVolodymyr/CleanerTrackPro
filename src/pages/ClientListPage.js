@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-//import {Button} from './../components/Button';
+import {Link} from "react-router-dom";
 
 export const ClientListPage = () => {
     const [client, setClient] = useState([]);
@@ -49,8 +49,8 @@ export const ClientListPage = () => {
                                     </ul>
                                 </div>
                                 <div className="card-action">
-                                    <a href="#">Edit</a>
-                                    <a href="#">Delete</a>
+                                    <Link to={`/client/${item.id[0]}/edit`}>Edit</Link>
+                                    <Link to={`/client/${item.id[0]}/delete`}>Delete</Link>
                                 </div>
                             </div>
                         </div>)
@@ -60,53 +60,3 @@ export const ClientListPage = () => {
         )
     }
 }
-
-//export const ClientListPage = () => {
-//  const [error, setError] = useState(null);
-//  const [isLoaded, setIsLoaded] = useState(false);
-//  const [data, setData] = useState([]);
-//
-//  // Примечание: пустой массив зависимостей [] означает, что
-//  // этот useEffect будет запущен один раз
-//  // аналогично componentDidMount()
-//  useEffect(() => {
-//    axios.get("https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json")
-//      .then((response)=>{
-//          console.log(response);
-//          const client = [];
-//          Object.keys(response.data).forEach((key, index)=> {
-//              console.log('key', key);
-//              console.log('index', index);
-//              client.push({
-//                  id: key,
-//                  name: `Client ${index+1}`
-//              })
-//              setIsLoaded(true);
-//              setData({client});
-//
-//
-//          })
-//      })
-//
-//  }, [])
-//
-//  if (error) {
-//    return <div>Ошибка:</div>;
-//  } else if (!isLoaded) {
-//    return <div>Загрузка...</div>;
-//  } else {
-//  console.log('data 2 client', data.client)
-//    return (
-//      <div>
-//        {data.client.map(el => {
-//        console.log('ell', el);
-//        return (
-//          <li key={el.id}>
-//            {el.name} {el.price}
-//          </li>
-//          )
-//        })}
-//      </div>
-//    );
-//  }
-//}
