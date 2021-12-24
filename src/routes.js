@@ -5,6 +5,8 @@ import {ClientListPage} from './pages/ClientListPage';
 import {ClientEditPage} from './pages/ClientEditPage';
 import {ClientDeletePage} from './pages/ClientDeletePage';
 import {EmployeesPage} from './pages/EmployeesPage';
+import {EmployeesListPage} from './pages/EmployeesListPage';
+import {EmployeesEditPage} from './pages/EmployeesEditPage';
 import {EquipmentPage} from './pages/EquipmentPage';
 import {JobsPage} from './pages/JobsPage';
 import {WorksitesPage} from './pages/WorksitesPage';
@@ -17,6 +19,8 @@ export const MyRoutes = () => {
             <Route path='/client/:id/edit' element={<ClientEditPage />} />
             <Route path='/client/:id/delete' element={<ClientDeletePage />} />
             <Route path='/employees' exact element={<EmployeesPage />} />
+            <Route path='/employees/list' exact element={<EmployeesListPage />} />
+            <Route path='/employees/:id/edit' element={<EmployeesEditPage />} />
             <Route path='/equipment' exact element={<EquipmentPage />} />
             <Route path='/jobs' exact element={<JobsPage />}/>
             <Route path='/worksites' exact element={<WorksitesPage />}/>
