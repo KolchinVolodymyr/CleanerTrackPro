@@ -1,33 +1,18 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import axios from 'axios';
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 
 export const ClientEditPage = () => {
     const ID = useParams().id;
+    let navigate = useNavigate();
     const [data, setData] = useState({
         name: '', address: '', phone: '', contactPerson: '', client: '', status: ''
     });
 
-//    const fetchClient = useCallback(async () => {
-//        axios.get(`https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test/${ID}.json`)
-//        .then((response)=>{
-//            console.log(response);
-//            setData(response.data);
-//            console.log('response.data', response.data)
-//            console.log('data', data);
-//        })
-//        .catch(error => {
-//            console.log('error', error);
-//        })
-//    }, [ID]);
-
     useEffect(()=>{
         axios.get(`https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test/${ID}.json`)
             .then((response)=>{
-                console.log(response);
                 setData(response.data);
-                console.log('response.data', response.data)
-                console.log('data--', data);
             })
             .catch(error => {
                 console.log('error', error);
@@ -42,7 +27,7 @@ export const ClientEditPage = () => {
         .catch(error => {
             console.log('error', error);
         })
-        console.log('data btn', data);
+        navigate('/client/list');
         event.preventDefault();
     }
 

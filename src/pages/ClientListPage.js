@@ -69,7 +69,6 @@ export const ClientListPage = () => {
                                     >
                                         Delete
                                     </button>
-                                    <Link to={`/client/${item.id[0]}/delete`}>Delete</Link>
                                 </div>
                             </div>
                         </div>)
