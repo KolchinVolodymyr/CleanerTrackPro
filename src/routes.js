@@ -1,15 +1,15 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
-import {ClientAddPage} from './pages/ClientAddPage';
-import {ClientListPage} from './pages/ClientListPage';
-import {ClientEditPage} from './pages/ClientEditPage';
-import {ClientDeletePage} from './pages/ClientDeletePage';
-import {EmployeesPage} from './pages/EmployeesPage';
-import {EmployeesListPage} from './pages/EmployeesListPage';
-import {EmployeesEditPage} from './pages/EmployeesEditPage';
-import {EquipmentPage} from './pages/EquipmentPage';
-import {JobsPage} from './pages/JobsPage';
-import {WorksitesPage} from './pages/WorksitesPage';
+import {ClientAddPage} from './pages/Client/ClientAddPage';
+import {ClientListPage} from './pages/Client/ClientListPage';
+import {ClientEditPage} from './pages/Client/ClientEditPage';
+import {ClientDeletePage} from './pages/Client/ClientDeletePage';
+import {EmployeesPage} from './pages/Employees/EmployeesPage';
+import {EmployeesListPage} from './pages/Employees/EmployeesListPage';
+import {EmployeesEditPage} from './pages/Employees/EmployeesEditPage';
+import {EquipmentPage} from './pages/Equipment/EquipmentPage';
+import {JobsPage} from './pages/Jobs/JobsPage';
+import {WorksitesPage} from './pages/Worksites/WorksitesPage';
 
 export const MyRoutes = () => {
     return (

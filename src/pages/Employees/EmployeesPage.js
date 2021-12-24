@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
+import {Button} from './../../components/Button';
 import axios from 'axios';
-import {Button} from './../components/Button';
 
-export const ClientAddPage = () => {
+export const EmployeesPage = () => {
     const [data, setData] = useState({
-        name: '', address: '', phone: '', contactPerson: '', client: '', status: ''
+        name: '', address: '', phone: '', salary: '', date_of_birth: '', status: ''
     });
-     const [client, setClient] = useState([]);
-
+    const changeHandler = event => {
+        setData({...data, [event.target.name]: event.target.value});
+    }
 
     const handleSubmitCreate = (event) => {
-        axios.post('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json', data)
+        axios.post('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/employees.json', data)
             .then((response)=>{
                 console.log(response);
             })
@@ -20,30 +21,10 @@ export const ClientAddPage = () => {
         event.preventDefault();
     };
 
-    const handleSubmitReadList = event => {
-        axios.get('https://cleanertrackpro-c446c-default-rtdb.europe-west1.firebasedatabase.app/Test.json')
-         .then((response)=>{
-            Object.keys(response.data).forEach((key, index)=> {
-                client.push({
-                    id: key,
-                    name: `Client ${index+1}`
-                })
-                setClient({client});
-            })
-         })
-         .catch(error => {
-            console.log('error', error);
-         })
-    }
-
-    const changeHandler = event => {
-        setData({...data, [event.target.name]: event.target.value});
-    }
-
     return(
         <div>
             <h1>
-                Client Page
+                Employees Page
             </h1>
             <form>
                 <label>
@@ -71,24 +52,21 @@ export const ClientAddPage = () => {
                     />
                 </label>
                 <label>
-                    Contact person:
+                    Salary:
                     <input
-                        type="text"
-                        name="contactPerson"
+                        type="number"
+                        name="salary"
                         onChange={changeHandler}
                     />
                 </label>
-                <label>Corporate or personal?</label>
-                <select
-                    className="browser-default"
-                    defaultValue='Choose your option'
-                    name="client"
-                    onChange={changeHandler}
-                >
-                    <option value='Choose your option' disabled>Choose your option</option>
-                    <option value='Corporate'>Corporate</option>
-                    <option value='Personal'>Personal</option>
-                </select>
+                <label>
+                    Date of birth:
+                    <input
+                        type="text"
+                        name="date_of_birth"
+                        onChange={changeHandler}
+                    />
+                </label>
                 <label>Status</label>
                 <select
                     className="browser-default"
@@ -102,7 +80,6 @@ export const ClientAddPage = () => {
                 </select>
                 <Button onClick={handleSubmitCreate} type="primary">Create</Button>
             </form>
-            <Button onClick={handleSubmitReadList} type="primary">Read</Button>
         </div>
     )
 }
